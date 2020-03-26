@@ -11,6 +11,7 @@ import Contact from 'screens/Contact/Contact';
 import Terms from 'screens/Terms/Terms';
 import Privacy from 'screens/Terms/Privacy';
 import Endorsements from 'screens/Endorsements/Endorsements';
+import Embed from 'screens/Embed/Embed';
 import About from 'screens/About/About';
 import CompareModels from 'screens/CompareModels/CompareModels';
 import AppBar from 'components/AppBar/AppBar';
@@ -34,6 +35,7 @@ export default function App() {
             <Route path="/terms" component={Terms} />
             <Route path="/privacy" component={Privacy} />
             <Route path="/compare" component={CompareModels} />
+            <Route path="/embed" component={Embed} />
             {/* <Route path="/donate" component={ComingSoon} /> */}
             <Route path="/*">
               <Redirect to="/" />

@@ -10,15 +10,32 @@ import {
   INTERVENTION_DESCRIPTIONS,
   INTERVENTION_EFFICACY_ORDER_ASC,
 } from 'enums';
+import { useIsEmbed } from 'utils/hooks';
 import { Legend, LegendItem } from './Legend';
 
 function Map() {
   let [redirectTarget, setRedirectTarget] = useState();
+  const isEmbed = useIsEmbed();
 
   if (redirectTarget) {
+<<<<<<< HEAD
     window.scrollTo(0, 0);
 
     return <Redirect push to={redirectTarget} />;
+=======
+    if (isEmbed) {
+      setRedirectTarget(null);
+      return window.open(redirectTarget);
+    }
+    return (
+      <Redirect
+        push
+        to={redirectTarget}
+        // If embedded, open link in new window
+        {...(isEmbed ? { target: '_blank' } : {})}
+      />
+    );
+>>>>>>> 5d91449... WIP
   }
 
   const legendConfig = {};
@@ -49,7 +66,7 @@ function Map() {
           <USAMap width="100%" height="auto" customize={statesCustomConfig} />
         </Grid>
         <Grid item xs={12}>
-          <Legend>
+          <Legend condensed={isEmbed}>
             {INTERVENTION_EFFICACY_ORDER_ASC.filter(
               intervention => legendConfig[intervention],
             ).map(intervention => (
