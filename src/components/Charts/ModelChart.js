@@ -5,6 +5,7 @@ import { snakeCase } from 'lodash';
 import { INTERVENTIONS } from 'enums';
 import LightTooltip from 'components/LightTooltip/LightTooltip';
 import Chart from './Chart';
+import { interventionToModelMap } from 'utils/model';
 
 import {
   ChartContainer,
@@ -24,12 +25,7 @@ const ModelChart = ({
   interventions,
   currentIntervention,
 }) => {
-  const interventionToModel = {
-    [INTERVENTIONS.LIMITED_ACTION]: interventions.baseline,
-    [INTERVENTIONS.SOCIAL_DISTANCING]:
-      interventions.distancingPoorEnforcement.now,
-    [INTERVENTIONS.SHELTER_IN_PLACE]: interventions.distancing.now,
-  };
+  let interventionToModel = interventionToModelMap(interventions);
 
   let model = interventionToModel[currentIntervention];
 
